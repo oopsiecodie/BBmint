@@ -23,7 +23,7 @@ const MintNFT = () => {
   const [whitelistMintStatus, setWhitelistMintStatus] = useState();
   const [publicMintStatus, setPublicMintStatus] = useState();
 
-  const [numToMint, setNumToMint] = useState(2);
+  const [numToMint, setNumToMint] = useState(1);
 
 
 
