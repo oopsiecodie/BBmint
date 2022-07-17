@@ -18,7 +18,7 @@ const MintNFTCard = ({title, description, action, canMint, showNumToMint, setNum
       </CardContent>
       <CardActions>
         {showNumToMint &&
-          <Input onChange={handleChange} defaultValue={2} type="number" label="number to mint"
+          <Input onChange={handleChange} defaultValue={1} type="number" label="number to mint"
             sx={{mx: 3}}
           />}
         <Button disabled={!canMint} onClick={action} variant="contained">Mint</Button>
