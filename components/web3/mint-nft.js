@@ -16,7 +16,7 @@ const MintNFT = () => {
   const fetcher = (url) => fetch(url).then((res) => res.json());
   const { active, account, chainId } = useWeb3React();
 
-  const [whitelistClaimable, setWhitelistClaimable] = useState(NOT_CLAIMABLE);
+  const [whitelistClaimable, setWhitelistClaimable] = useState(CLAIMABLE);
   const [alreadyClaimed, setAlreadyClaimed] = useState(false);
 
 
