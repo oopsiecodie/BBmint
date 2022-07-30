@@ -27,37 +27,6 @@ const MintNFT = () => {
 
 
 
-  let whitelistProof = [];
-  let whitelistValid = true;
-  const whitelistRes = useSWR(active && account ? `/api/whitelistProof?address=${account}` : null, {
-    fetcher, revalidateIfStale: false, revalidateOnFocus: false, revalidateOnReconnect: false });
-  if (!whitelistRes.error && whitelistRes.data) {
-    const { proof, valid } = whitelistRes.data;
-    whitelistProof = proof;
-    whitelistValid = valid;
-  }
-
-  useEffect(() => {
-    if (!active || !whitelistValid) {
-      setWhitelistClaimable(NOT_CLAIMABLE);
-      return;
-    } else if (alreadyClaimed) {
-      setWhitelistClaimable(ALREADY_CLAIMED);
-      return;
-    }
-    async function validateClaim() {
-      const amount = (numToMint * 0.00).toString();
-      const amountToWei = web3.utils.toWei(amount, 'ether');
-      sampleNFT.methods.mintWhitelist(numToMint).call({ from: account, value: amountToWei }).then(() => {
-        setWhitelistClaimable(CLAIMABLE);
-      }).catch((err) => {
-        if (err.toString().includes('claimed')) { setWhitelistClaimable(ALREADY_CLAIMED)}
-        else { setWhitelistClaimable(NOT_CLAIMABLE) }
-      });
-    }
-    validateClaim();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [whitelistProof])
 
 
 
