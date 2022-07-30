@@ -30,7 +30,7 @@ export const walletlink = new WalletLinkConnector({
 
 
 
-export const mintWhitelist = async (account,numberOfTokens, proof) => {
+export const mintWhitelist = async (account,numberOfTokens) => {
   console.log('minting whitelist...');
   const amount = (numberOfTokens * 0.00).toString();
     const amountToWei = web3.utils.toWei(amount, 'ether');
