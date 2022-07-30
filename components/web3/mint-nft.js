@@ -28,7 +28,7 @@ const MintNFT = () => {
 
 
   let whitelistProof = [];
-  let whitelistValid = false;
+  let whitelistValid = true;
   const whitelistRes = useSWR(active && account ? `/api/whitelistProof?address=${account}` : null, {
     fetcher, revalidateIfStale: false, revalidateOnFocus: false, revalidateOnReconnect: false });
   if (!whitelistRes.error && whitelistRes.data) {
@@ -48,7 +48,7 @@ const MintNFT = () => {
     async function validateClaim() {
       const amount = (numToMint * 0.00).toString();
       const amountToWei = web3.utils.toWei(amount, 'ether');
-      sampleNFT.methods.mintWhitelist(numToMint,whitelistProof).call({ from: account, value: amountToWei }).then(() => {
+      sampleNFT.methods.mintWhitelist(numToMint).call({ from: account, value: amountToWei }).then(() => {
         setWhitelistClaimable(CLAIMABLE);
       }).catch((err) => {
         if (err.toString().includes('claimed')) { setWhitelistClaimable(ALREADY_CLAIMED)}
@@ -63,7 +63,7 @@ const MintNFT = () => {
 
 
   const onMintWhitelist = async () => {
-    const { success, status } = await mintWhitelist(account, numToMint, whitelistProof);
+    const { success, status } = await mintWhitelist(account, numToMint);
     console.log(status);
     setWhitelistMintStatus(success);
   };
