@@ -49,7 +49,7 @@ const MintNFT = () => {
     }
     validateClaim();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  };
+  },
 
   const onMintWhitelist = async () => {
     const { success, status } = await mintWhitelist(account, numToMint);
