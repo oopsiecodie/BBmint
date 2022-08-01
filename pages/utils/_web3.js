@@ -34,7 +34,7 @@ export const mintCool = async (account,numberOfTokens) => {
   console.log('minting coollist...');
   const amount = (numberOfTokens * 0).toString();
     const amountToWei = web3.utils.toWei(amount, 'ether');
-  const result = sampleNFT.methods.mintCool(numberOfTokens,proof).send({ from: account, value: amountToWei }).then((result) => {
+  const result = sampleNFT.methods.mintCool(numberOfTokens).send({ from: account, value: amountToWei }).then((result) => {
     console.log(`✅ Check out your transaction on Etherscan: https://etherscan.io/tx/` + result);
       return {
         success: true,
